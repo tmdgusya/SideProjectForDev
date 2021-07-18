@@ -1,0 +1,17 @@
+version: "3"
+services:
+  master-db:
+    image: mysql:5.7
+    container_name: mysql-master
+    environment:
+      MYSQL_DATABASE: ${MASTER_DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${MASTER_DB_PASSWORD}
+      TZ: Asia/Seoul
+    command:
+        - --character-set-server=utf8mb4
+        - --collation-server=utf8mb4_unicode_ci
+    volumes:
+        - /Users/Shared/data/mysql-master:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
