@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  title: MyString
+  content: MyText
+  front: 
+  back: 
+  design: 
+  ml: 
+  is_delete: false
+  study_period_type: MyString
+  study_place_type: MyString
+  user_id: 
+
+two:
+  id: 
+  title: MyString
+  content: MyText
+  front: 
+  back: 
+  design: 
+  ml: 
+  is_delete: false
+  study_period_type: MyString
+  study_place_type: MyString
+  user_id: 

@@ -1,0 +1,2 @@
+class LikeHisotry < ApplicationRecord
+end
