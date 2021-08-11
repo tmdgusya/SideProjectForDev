@@ -2,7 +2,6 @@ require 'bcrypt'
 require 'code_error'
 
 class User < ApplicationRecord
-  include BCrypt
 
   module Role
     GUEST = 'GUEST'
@@ -16,7 +15,21 @@ class User < ApplicationRecord
 
       is_email_duplicate?(email)
 
-      User.create(:email => email, :password => password, :nickname => nickname, :role => Role::USER, :is_delete => false)
+      User.create(:email => email, :password => password_hashing(password), :nickname => nickname, :role => Role::USER, :is_delete => false)
+    end
+
+    def login(email, password)
+
+      user = User.find_by_email(email)
+
+      if user.nil?
+        CodeError.raise(400, '해당 이메일은 존재하지 않습니다.')
+      end
+
+      unless user.is_same_password?(password)
+        CodeError.raise(400, '비밀번호를 잘못 입력하셨습니다.')
+      end
+
     end
 
     def is_email_duplicate?(email)
@@ -29,10 +42,14 @@ class User < ApplicationRecord
       true
     end
 
-    private def password_hashing(password)
-      Password.create(password)
+    def password_hashing(password)
+      BCrypt::Password.create(password, :cost => 6)
     end
 
+  end
+
+  def is_same_password?(password)
+    BCrypt::Password.new(self.password) == password
   end
 
 end
