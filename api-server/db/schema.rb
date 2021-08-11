@@ -12,53 +12,53 @@
 
 ActiveRecord::Schema.define(version: 2021_08_04_134804) do
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", charset: "utf8", force: :cascade do |t|
     t.text "content"
-    t.decimal "user_id"
-    t.decimal "study_id"
+    t.integer "user_id"
+    t.integer "study_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "frameworks", force: :cascade do |t|
+  create_table "frameworks", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "img_url"
     t.string "type"
-    t.decimal "study_id"
+    t.integer "study_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "like_hisotries", force: :cascade do |t|
-    t.decimal "study_id"
-    t.decimal "user_id"
+  create_table "like_hisotries", charset: "utf8", force: :cascade do |t|
+    t.integer "study_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "participant_users", force: :cascade do |t|
-    t.decimal "study_id"
-    t.decimal "user_id"
+  create_table "participant_users", charset: "utf8", force: :cascade do |t|
+    t.integer "study_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "studies", force: :cascade do |t|
+  create_table "studies", charset: "utf8", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.decimal "front"
-    t.decimal "back"
-    t.decimal "design"
-    t.decimal "ml"
+    t.integer "front"
+    t.integer "back"
+    t.integer "design"
+    t.integer "ml"
     t.boolean "is_delete"
     t.string "study_period_type"
     t.string "study_place_type"
-    t.decimal "user_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email"
     t.string "password"
     t.string "nickname"
