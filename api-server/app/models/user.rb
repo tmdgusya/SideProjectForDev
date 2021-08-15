@@ -30,6 +30,7 @@ class User < ApplicationRecord
         CodeError.raise(400, '비밀번호를 잘못 입력하셨습니다.')
       end
 
+      return user
     end
 
     def is_email_duplicate?(email)

@@ -20,9 +20,9 @@ class UserController < ApplicationController
       :password => params[:password]
     }
 
-    User.login(login_request_dto[:email], login_request_dto[:password])
+    user = User.login(login_request_dto[:email], login_request_dto[:password])
 
-    render :json => {}
+    render :json => {:token => encode_token({:id => user.id, :role => user.role})}
   end
 
 end
