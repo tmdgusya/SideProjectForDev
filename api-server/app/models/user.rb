@@ -23,11 +23,11 @@ class User < ApplicationRecord
       user = User.find_by_email(email)
 
       if user.nil?
-        CodeError.raise(400, '해당 이메일은 존재하지 않습니다.')
+        raise CodeError.new(400, '해당 이메일은 존재하지 않습니다.')
       end
 
       unless user.is_same_password?(password)
-        CodeError.raise(400, '비밀번호를 잘못 입력하셨습니다.')
+        raise CodeError.new(400, '비밀번호를 잘못 입력하셨습니다.')
       end
 
       return user

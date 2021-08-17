@@ -22,7 +22,12 @@ class UserController < ApplicationController
 
     user = User.login(login_request_dto[:email], login_request_dto[:password])
 
-    render :json => {:token => encode_token({:id => user.id, :role => user.role})}
+    token_box = encode_token({:id => user.id, :role => user.role})
+
+    user.auth_token = token_box[:refresh_token]
+    user.save
+
+    render :json => {:token => token_box[:access_token]}
   end
 
 end
