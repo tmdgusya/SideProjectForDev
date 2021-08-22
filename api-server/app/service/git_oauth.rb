@@ -2,6 +2,7 @@ require 'rest-client'
 require 'json'
 
 class GitOauth
+  include Oauth
 
   module KEY
     CLIENT_ID = '7f8c268c407297518728'
@@ -18,16 +19,17 @@ class GitOauth
   class << self
     public def git_login(code)
       url = "#{URL::GET_PROFILE_URL}?client_id=#{KEY::CLIENT_ID}&client_secret=#{KEY::SECRET_KEY}&code=#{code}"
-      profile = RestClient.post(url, nil, nil )
-      access_token, token_type = profile.split("&")
-
-      token_key, token_value = access_token.split("=")
-
-      profile = RestClient.get(URL::GET_PROFILE, {:Authorization => "token #{token_value}"})
-      profile = JSON.parse(profile)
-      # profile debug 찍기
+      response = RestClient.post(url, nil, nil )
+      token = get_access_token(response)
+      profile = JSON.parse(RestClient.get(URL::GET_PROFILE, {:Authorization => "token #{token}"}))
       User.join(profile['email'],  profile['login'], 'random')
       return profile
+    end
+
+    def get_access_token(response)
+      access_token, token_type = response.split("&")
+      token_key, token_value = access_token.split("=")
+      return token_value
     end
   end
 
