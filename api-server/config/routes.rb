@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   post 'api/join' => 'user#join'
   post 'api/login' => 'user#login'
 
+  get 'git-oauth' => 'user#git_login'
+
 end

@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class UserController < ApplicationController
 
   def join
@@ -21,6 +23,15 @@ class UserController < ApplicationController
     }
 
     render :json => {:token => UserService.login(login_request_dto)}
+  end
+
+  def git_login
+
+    code = params[:code]
+
+    profile = GitOauth.git_login(code)
+
+    render :json => {:profile => profile}
   end
 
 end

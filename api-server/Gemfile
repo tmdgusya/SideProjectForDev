@@ -25,6 +25,7 @@ gem 'mysql2', '~> 0.5.3'
 
 gem 'rexml'
 gem 'bcrypt'
+gem 'rest-client'
 
 # Rspec
 gem 'rspec'

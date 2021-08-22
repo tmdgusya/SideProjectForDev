@@ -1,0 +1,34 @@
+require 'rest-client'
+require 'json'
+
+class GitOauth
+
+  module KEY
+    CLIENT_ID = '7f8c268c407297518728'
+    SECRET_KEY = '8060b43522131eac6ab51c5d5bdf627c9b20a268'
+  end
+
+  module URL
+    CALLBACK_URL = 'http://localhost:3000/git-oauth'
+    GET_PROFILE_URL = 'https://github.com/login/oauth/access_token'
+    GET_PROFILE = 'https://api.github.com/user'
+  end
+
+
+  class << self
+    public def git_login(code)
+      url = "#{URL::GET_PROFILE_URL}?client_id=#{KEY::CLIENT_ID}&client_secret=#{KEY::SECRET_KEY}&code=#{code}"
+      profile = RestClient.post(url, nil, nil )
+      access_token, token_type = profile.split("&")
+
+      token_key, token_value = access_token.split("=")
+
+      profile = RestClient.get(URL::GET_PROFILE, {:Authorization => "token #{token_value}"})
+      profile = JSON.parse(profile)
+      # profile debug 찍기
+      User.join(profile['email'],  profile['login'], 'random')
+      return profile
+    end
+  end
+
+end
