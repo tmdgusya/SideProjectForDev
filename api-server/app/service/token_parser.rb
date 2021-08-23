@@ -1,4 +1,4 @@
-class TokenProvider
+class TokenParser
 
   class << self
 

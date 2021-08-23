@@ -26,6 +26,11 @@ gem 'mysql2', '~> 0.5.3'
 gem 'rexml'
 gem 'bcrypt'
 gem 'rest-client'
+gem 'resque'
+gem 'resque-web'
+gem 'resque-scheduler'
+gem 'thin'
+gem "redis"
 
 # Rspec
 gem 'rspec'
