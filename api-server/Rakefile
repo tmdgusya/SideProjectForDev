@@ -6,6 +6,6 @@ require 'resque/tasks'
 
 Rails.application.load_tasks
 
-task 'resque:setup' => :environment do
-
+task 'resque:work' => :environment do
+  CleanupJob.perform_now()
 end
