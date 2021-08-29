@@ -62,6 +62,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    apipie-rails (0.5.19)
+      rails (>= 4.1)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.7)
@@ -310,6 +312,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  apipie-rails
   bcrypt
   bootsnap (>= 1.4.4)
   byebug

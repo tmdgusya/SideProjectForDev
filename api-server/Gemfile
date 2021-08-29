@@ -32,6 +32,9 @@ gem 'resque-scheduler'
 gem 'thin'
 gem "redis"
 
+# api docs
+gem 'apipie-rails'
+
 # Rspec
 gem 'rspec'
 gem 'rspec-core'
