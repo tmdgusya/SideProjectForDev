@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   get 'git-oauth' => 'user#git_login'
 
+  post 'api/study' => 'study#enroll_study'
+  put 'api/study' => 'study#update_study'
+  delete 'api/study' => 'study#delete_study'
+
 end

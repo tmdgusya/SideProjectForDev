@@ -17,6 +17,43 @@ class StudyService
       skills.each do |skill|
         StudySkills.set(skill, new_study.id)
       end
+    end
+
+
+    def update_study(study_id, user, update_study_info)
+      study = Study.find_by_id(study_id)
+
+      if study.nil? and study.user_id != user.id
+        raise CodeError.new(500, "수정할 스터디가 존재하지 않습니다. 새로고침을 해보세요!")
+      end
+
+      study.update_study(update_study_info[:title], update_study_info[:description], update_study_info[:period_type],
+                         update_study_info[:onoff_type], update_study_info[:due_date], update_study_info[:max_people],
+                         update_study_info[:category])
+
+      study.save
+    end
+
+
+    def delete_study(study_id)
+
+      study = Study.find_by_id(study_id)
+
+      if study.nil?
+        raise CodeError.new(500, "스터디를 찾을 수 없습니다.")
+      end
+
+      study_skills = StudySkills.where("study_id = ?", study_id)
+
+      begin
+        study_skills.each do |study_skill|
+          study_skill.destroy
+        end
+      rescue
+
+      end
+
+      study.destroy
 
     end
 

@@ -18,4 +18,14 @@ class Study < ApplicationRecord
 
   end
 
+  def update_study(title = nil, content = nil, study_period_type = nil, study_place_type = nil, due_date = nil, max_people = nil, category = nil)
+    self.title = title if title.present?
+    self.content = content if content.present?
+    self.study_period_type = study_period_type if study_period_type.present?
+    self.study_place_type = study_place_type if study_place_type.present?
+    self.due_date = due_date.to_date if due_date.present?
+    self.max_people  = max_people if max_people.present?
+    self.category = category if category.present?
+  end
+
 end
