@@ -41,9 +41,7 @@ class StudyController < ApplicationController
 
     StudyService.update_study(params[:study_id], user, params)
 
-    render :json => {
-
-    }
+    render :json => {}
   end
 
   api!

@@ -27,8 +27,9 @@ class StudyService
         raise CodeError.new(500, "수정할 스터디가 존재하지 않습니다. 새로고침을 해보세요!")
       end
 
-      study.update_study(update_study_info[:title], update_study_info[:description], update_study_info[:period_type],
-                         update_study_info[:onoff_type], update_study_info[:due_date], update_study_info[:max_people],
+      study.update_study(update_study_info[:title], update_study_info[:description],
+                         update_study_info[:period_type], update_study_info[:onoff_type],
+                         update_study_info[:due_date], update_study_info[:max_people],
                          update_study_info[:category])
 
       study.save
