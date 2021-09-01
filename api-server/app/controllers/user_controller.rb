@@ -39,6 +39,10 @@ class UserController < ApplicationController
   end
 
   api!
+  param :code, String, :desc => 'github auth code'
+  returns :code => 200 do
+    property :token, String, :desc => "Access Token"
+  end
   def git_login
 
     code = params[:code]
