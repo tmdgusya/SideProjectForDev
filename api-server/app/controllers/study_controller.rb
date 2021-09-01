@@ -33,7 +33,7 @@ class StudyController < ApplicationController
   param :skills, Array(Numeric), :desc => 'FrameWork Id Array', :required => false
   def update_study
 
-    # user = @current_user
+    user = @current_user
 
     if params[:study_id].nil?
       raise CodeError.new(500, "삭제할 스터디를 선택해주세요")
