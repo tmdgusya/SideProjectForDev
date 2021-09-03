@@ -4,12 +4,12 @@ services:
     image: mysql:5.7
     container_name: mysql-master
     environment:
-      MYSQL_DATABASE: "${MASTER_DB_NAME}"
-      MYSQL_ROOT_PASSWORD: "${MASTER_DB_PASSOWRD}"
+      MYSQL_DATABASE: study
+      MYSQL_ROOT_PASSWORD: 1234
       TZ: Asia/Seoul
     command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
     volumes:
-        - ./master-db:/var/lib/mysql
+      - ./master-db:/var/lib/mysql
     ports:
       - "3306:3306"
     restart: always
@@ -18,12 +18,12 @@ services:
     image: mysql:5.7
     container_name: mysql-test
     environment:
-      MYSQL_DATABASE: "${MASTER_DB_NAME}"
-      MYSQL_ROOT_PASSWORD: "${MASTER_DB_PASSOWRD}"
+      MYSQL_DATABASE: study
+      MYSQL_ROOT_PASSWORD: 1234
       TZ: Asia/Seoul
     command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
     volumes:
-        - ./test-db:/var/lib/mysql
+      - ./test-db:/var/lib/mysql
     ports:
       - "3307:3306"
     restart: always
