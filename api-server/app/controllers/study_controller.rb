@@ -3,11 +3,11 @@ class StudyController < ApplicationController
   api!
   param :category, Array(Numeric), :required => true
   param :onoff_type, String, :required => true, :desc => 'ONLINE | OFFLINE | ON-OFFLINE'
-  param :due_date, String, :desc => '2021-10-09'
-  param :period_type, String, :desc => 'ONETIME | REGULAR'
-  param :title, String
-  param :description, String
-  param :skills, Array(Numeric), :desc => 'FrameWork Id Array'
+  param :due_date, String, :desc => '2021-10-09', :required => false
+  param :period_type, String, :desc => 'ONETIME | REGULAR', :required => false
+  param :title, String, :required => false
+  param :description, String, :required => false
+  param :skills, Array(Numeric), :desc => 'FrameWork Id Array', :required => false
   returns :code => 200 do
     "HTTP STATUS 200!"
   end
@@ -45,12 +45,23 @@ class StudyController < ApplicationController
   end
 
   api!
-  param :study_id, Numeric, :desc => "삭제할 study_id"
+  param :study_id, Numeric, :desc => "삭제할 study_id", :required => false
   def delete_study
 
     study_id = params[:study_id]
 
     StudyService.delete_study(study_id)
+
+  end
+
+  api!
+  param :page, Numeric, :desc => "page Number"
+  param :limit, Numeric, :desc => "post size per page"
+  param :category, String, :desc => "검색할 카테고리"
+  param :framework, String, :desc => "프레임워크"
+  def get_study
+
+
 
   end
 

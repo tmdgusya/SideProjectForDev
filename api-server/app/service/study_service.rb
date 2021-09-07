@@ -44,7 +44,7 @@ class StudyService
         raise CodeError.new(500, "스터디를 찾을 수 없습니다.")
       end
 
-      study_skills = StudySkills.where("study_id = ?", study_id)
+      study_skills = StudySkills.from(study_id)
 
       begin
         study_skills.each do |study_skill|
