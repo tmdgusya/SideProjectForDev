@@ -20,4 +20,5 @@ Apipie.configure do |config|
   config.api_routes = Rails.application.routes
   config.routes_formatter = MyFormatter.new
   config.locale = lambda { |loc| loc ? FastGettext.set_locale(loc) : FastGettext.locale }
+  config.reload_controllers=false
 end
