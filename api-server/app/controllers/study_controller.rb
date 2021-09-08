@@ -3,21 +3,21 @@ class StudyController < ApplicationController
   api!
   param :category, Array(Numeric), :required => true
   param :onoff_type, String, :required => true, :desc => 'ONLINE | OFFLINE | ON-OFFLINE'
-  param :due_date, String, :desc => '2021-10-09', :required => false
-  param :period_type, String, :desc => 'ONETIME | REGULAR', :required => false
-  param :title, String, :required => false
-  param :description, String, :required => false
-  param :skills, Array(Numeric), :desc => 'FrameWork Id Array', :required => false
+  param :due_date, String, :desc => '2021-10-09', :required => true
+  param :period_type, String, :desc => 'ONETIME | REGULAR', :required => true
+  param :title, String, :required => true
+  param :description, String, :required => true
+  param :skills, Array(Numeric), :desc => 'FrameWork Id Array', :required => true
   returns :code => 200 do
     "HTTP STATUS 200!"
   end
   def enroll_study
 
-    validate_enroll_study(params)
+    raise CodeError.new(500, "요청이 잘못되었습니다.") unless validate_study_enroll_params.permitted?
 
     user = @current_user
 
-    StudyService.enroll_study(params, user)
+    StudyService.enroll_study(validate_study_enroll_params, user)
 
     render :json => {}
   end
@@ -62,41 +62,20 @@ class StudyController < ApplicationController
   def get_study
 
 
-
   end
 
-  private def validate_enroll_study(request)
-    if request[:category].nil?
-      raise CodeError.new(500, "카테고리를 입력해주세요")
-    end
-
-    if request[:onoff_type].nil?
-      raise CodeError.new(500, "스터디 장소를 선택해주세요")
-    end
-
-    if request[:due_date].nil?
-      raise CodeError.new(500, "스터이 예상 마감일을 선택해주세요")
-    end
-
-    if request[:max_people].nil?
-      raise CodeError.new(500, "최대 인원을 설정해주세요")
-    end
-
-    if request[:period_type].nil?
-      raise CodeError.new(500, "단기형인지 정기형인지 골라주세요")
-    end
-
-    if request[:title].nil?
-      raise CodeError.new(500, "스터디 제목을 입력해주세요")
-    end
-
-    if request[:description].nil?
-      raise CodeError.new(500, "본문을 입력해주세요")
-    end
-
-    if request[:skills].nil?
-      raise CodeError.new(500, "스터디 기술스택을 선정해주세요")
-    end
+  private def validate_study_enroll_params
+    params.require(:category)
+    params.require(:onoff_type)
+    params.require(:due_date)
+    params.require(:max_people)
+    params.require(:period_type)
+    params.require(:title)
+    params.require(:description)
+    params.require(:skills)
+    params
   end
+
+
 
 end

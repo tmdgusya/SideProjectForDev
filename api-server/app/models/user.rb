@@ -34,9 +34,7 @@ class User < ApplicationRecord
     end
 
     def is_email_duplicate?(email)
-      email = User.where("email = ?", email).count
-
-      if email > 0
+      if User.where("email = ?", email).exists?
         CodeError.raise(400, "동일 이메일이 중복됩니다.")
       end
 

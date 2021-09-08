@@ -13,7 +13,7 @@ class UserController < ApplicationController
   def join
 
     join_request_dto = {
-      :eamil => params[:eamil],
+      :email => params[:email],
       :nickname => params[:nickname],
       :password => params[:password]
     }
