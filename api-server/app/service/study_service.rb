@@ -23,9 +23,7 @@ class StudyService
     def update_study(study_id, user, update_study_info)
       study = Study.find_by_id(study_id)
 
-      if study.nil? and study.user_id != user.id
-        raise CodeError.new(500, "수정할 스터디가 존재하지 않습니다. 새로고침을 해보세요!")
-      end
+      raise CodeError.new(500, "수정할 스터디가 존재하지 않습니다. 새로고침을 해보세요!")  if study.nil? and study.user_id != user.id
 
       study.update_study(update_study_info[:title], update_study_info[:description],
                          update_study_info[:period_type], update_study_info[:onoff_type],
@@ -36,13 +34,12 @@ class StudyService
     end
 
 
-    def delete_study(study_id)
+    def delete_study(study_id, user)
 
       study = Study.find_by_id(study_id)
 
-      if study.nil?
-        raise CodeError.new(500, "스터디를 찾을 수 없습니다.")
-      end
+      raise CodeError.new(500, "스터디를 찾을 수 없습니다.") if study.nil?
+      raise CodeError.new(500, "작성자만 삭제 가능합니다.") if study.is_author?(user)
 
       study_skills = StudySkills.from(study_id)
 

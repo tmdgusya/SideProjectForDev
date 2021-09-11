@@ -50,7 +50,7 @@ class StudyController < ApplicationController
 
     study_id = params[:study_id]
 
-    StudyService.delete_study(study_id)
+    StudyService.delete_study(study_id, @current_user)
 
   end
 

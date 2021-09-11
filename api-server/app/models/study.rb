@@ -28,4 +28,8 @@ class Study < ApplicationRecord
     self.category = category if category.present?
   end
 
+  def is_author?(user)
+    self.user_id == user.id
+  end
+
 end
