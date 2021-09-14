@@ -12,6 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2021_08_04_134804) do
 
+  create_table "categories", id: :integer, charset: "utf8", force: :cascade do |t|
+    t.string "name", limit: 20
+  end
+
   create_table "comments", charset: "utf8", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
@@ -56,6 +60,11 @@ ActiveRecord::Schema.define(version: 2021_08_04_134804) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "study_skills", id: :integer, charset: "utf8", force: :cascade do |t|
+    t.integer "study_id", null: false
+    t.integer "framework_id", null: false
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|

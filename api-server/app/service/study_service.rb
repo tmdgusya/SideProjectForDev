@@ -41,7 +41,7 @@ class StudyService
       raise CodeError.new(500, "스터디를 찾을 수 없습니다.") if study.nil?
       raise CodeError.new(500, "작성자만 삭제 가능합니다.") if study.is_author?(user)
 
-      study_skills = StudySkills.from(study_id)
+      study_skills = StudySkills.from_study(study_id)
 
       begin
         study_skills.each do |study_skill|

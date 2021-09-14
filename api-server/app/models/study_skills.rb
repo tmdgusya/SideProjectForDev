@@ -1,6 +1,6 @@
 class StudySkills < ActiveRecord::Base
 
-  scope :from, -> (study_id) { where("study_id = ?", study_id) }
+  scope :from_study, -> (study_id) { where("study_id = ?", study_id) }
 
   class << self
 
