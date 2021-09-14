@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   put 'api/study' => 'study#update_study'
   delete 'api/study' => 'study#delete_study'
 
+  post 'api/category' => 'category#enroll_category'
+
 end
