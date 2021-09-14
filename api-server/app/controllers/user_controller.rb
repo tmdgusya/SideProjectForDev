@@ -39,6 +39,20 @@ class UserController < ApplicationController
   end
 
   api!
+  param :email, String
+  returns :code => 200 do
+    property :valid, [true, false]
+  end
+  def duplicate_email_check
+
+    raise CodeError.new(500, "중복확인할 이메일을 적어주세요") if params[:email].nil?
+
+    render :json => {
+      :valid => User.is_email_duplicate?(params[:email])
+    }
+  end
+
+  api!
   param :code, String, :desc => 'github auth code'
   returns :code => 200 do
     property :token, String, :desc => "Access Token"
