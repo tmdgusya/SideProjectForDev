@@ -96,6 +96,7 @@
     <orderEntry type="library" scope="PROVIDED" name="raabro (v1.4.0, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="racc (v1.5.2, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.3, rbenv: 3.0.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-cors (v1.1.1, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-mini-profiler (v2.3.2, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-protection (v2.1.0, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-proxy (v0.7.0, rbenv: 3.0.2) [gem]" level="application" />
@@ -133,7 +134,6 @@
     <orderEntry type="library" scope="PROVIDED" name="spring (v2.1.1, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v4.0.2, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.2, rbenv: 3.0.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.4.2, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thin (v1.8.1, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.1.0, rbenv: 3.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.10, rbenv: 3.0.2) [gem]" level="application" />
@@ -160,6 +160,8 @@
     <option name="generators">
       <list>
         <option value="active_record:application_record" />
+        <option value="apipie:install" />
+        <option value="apipie:views" />
         <option value="application_record" />
         <option value="assets" />
         <option value="benchmark" />
@@ -196,6 +198,8 @@
     <option name="myGenerators">
       <list>
         <option value="active_record:application_record" />
+        <option value="apipie:install" />
+        <option value="apipie:views" />
         <option value="application_record" />
         <option value="assets" />
         <option value="benchmark" />
@@ -272,6 +276,22 @@
                 </subtasks>
               </RakeTaskImpl>
               <RakeTaskImpl description="" fullCommand="active_storage:update" id="update" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="apipie">
+            <subtasks>
+              <RakeTaskImpl description="Generate cache to avoid production dependencies on markup languages" fullCommand="apipie:cache" id="cache" />
+              <RakeTaskImpl description="Generate CLI client for API documented with apipie gem" fullCommand="apipie:client" id="client" />
+              <RakeTaskImpl description="Convert your examples from the old yaml into the new json format" fullCommand="apipie:convert_examples" id="convert_examples" />
+              <RakeTaskImpl description="Did swagger output change since the last execution of this task?" fullCommand="apipie:did_swagger_change[version,swagger_content_type_input,filename_suffix]" id="did_swagger_change[version,swagger_content_type_input,filename_suffix]" />
+              <RakeTaskImpl description="Generate static documentation" fullCommand="apipie:static[version]" id="static[version]" />
+              <RakeTaskImpl description="Generate static documentation json" fullCommand="apipie:static_json[version]" id="static_json[version]" />
+              <RakeTaskImpl description="Generate static swagger json" fullCommand="apipie:static_swagger_json[version,swagger_content_type_input,filename_suffix]" id="static_swagger_json[version,swagger_content_type_input,filename_suffix]" />
+              <RakeTaskImpl description="Update api description in controllers base on routes" fullCommand="apipie:update_from_routes" id="update_from_routes" />
+              <RakeTaskImpl description="" fullCommand="apipie:did_swagger_change" id="did_swagger_change" />
+              <RakeTaskImpl description="" fullCommand="apipie:static" id="static" />
+              <RakeTaskImpl description="" fullCommand="apipie:static_json" id="static_json" />
+              <RakeTaskImpl description="" fullCommand="apipie:static_swagger_json" id="static_swagger_json" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl id="app">
