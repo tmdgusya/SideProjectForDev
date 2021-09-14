@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :decoded_token
   around_action
   protect_from_forgery with: :null_session
+  rescue_from ::Exception, with: :error_occurred
 
   def initialize
     @secret_key = "Jrl9qW7dQlTjKMKbFIWmCtWRNuAMtpfr"
@@ -31,8 +32,12 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def is_error?
-
+  def error_occurred(exception)
+    code = 500
+    if exception.is_a?(CodeError)
+      code = exception.code
+    end
+    render json: {code: code, msg: exception.message}.to_json, status: 500
   end
 
 end
