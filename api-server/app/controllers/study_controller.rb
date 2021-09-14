@@ -5,6 +5,7 @@ class StudyController < ApplicationController
   param :onoff_type, String, :required => true, :desc => 'ONLINE | OFFLINE | ON-OFFLINE'
   param :due_date, String, :desc => '2021-10-09', :required => true
   param :period_type, String, :desc => 'ONETIME | REGULAR', :required => true
+  parma :max_people, Integer, :desc => '최대 인원'
   param :title, String, :required => true
   param :description, String, :required => true
   param :skills, Array(Numeric), :desc => 'FrameWork Id Array', :required => true
