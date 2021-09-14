@@ -6,7 +6,7 @@ class TokenParser
       begin
         decoded_token = JWT.decode token,  @secret_key, true, { algorithm: 'HS256'}
         return decoded_token
-      rescue JWT::DecodeError
+      rescue JWT::DecodeError => e
         Rails.logger.warn "Error decoding the JWT : " + e.to_s
       end
     end
