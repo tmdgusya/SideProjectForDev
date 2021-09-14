@@ -13,8 +13,6 @@ class StudyController < ApplicationController
   end
   def enroll_study
 
-    raise CodeError.new(500, "요청이 잘못되었습니다.") unless validate_study_enroll_params.permitted?
-
     user = @current_user
 
     StudyService.enroll_study(validate_study_enroll_params, user)

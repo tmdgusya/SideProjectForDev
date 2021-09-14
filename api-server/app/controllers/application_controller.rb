@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
 
     if token.present?
       begin
-      decoded_token = TokenParser.valid_token(token)
-      user_id = decoded_token[0]['id']
+      d_token = TokenParser.valid_token(token)
+      user_id = d_token[0]["data"]["id"]
       @current_user = User.find_by_id(user_id)
       #TODO @current_user 의 token 도 decoded 한다.
       TokenParser.valid_token(@current_user.auth_token)

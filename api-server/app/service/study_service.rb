@@ -12,7 +12,9 @@ class StudyService
       description = study_info[:description]
       skills = study_info[:skills]
 
-      new_study = Study.createStudy(title, description, period_type, onoff_type, user.id, due_date, max_people, category)
+      Study.createStudy(title, description, period_type, onoff_type, user.id, due_date, max_people, category)
+
+      new_study = Study.where("user_id = ? AND title = ?", user.id, title).select("*")[0]
 
       skills.each do |skill|
         StudySkills.set(skill, new_study.id)

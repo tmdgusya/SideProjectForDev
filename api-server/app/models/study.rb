@@ -13,7 +13,7 @@ class Study < ApplicationRecord
       study.due_date = due_date.to_date
       study.max_people = max_people
       study.category_id = category
-      return study.save
+      study.save
     end
 
   end

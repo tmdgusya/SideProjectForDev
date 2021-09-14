@@ -50,14 +50,13 @@ ActiveRecord::Schema.define(version: 2021_08_04_134804) do
   create_table "studies", charset: "utf8", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.integer "front"
-    t.integer "back"
-    t.integer "design"
-    t.integer "ml"
     t.boolean "is_delete"
+    t.datetime "due_date"
+    t.integer "max_people"
     t.string "study_period_type"
     t.string "study_place_type"
     t.integer "user_id"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_134804) do
     t.string "nickname"
     t.string "role"
     t.string "is_delete"
+    t.string "auth_token", limit: 225
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

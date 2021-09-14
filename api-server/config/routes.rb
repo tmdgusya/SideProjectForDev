@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   post 'api/category' => 'category#enroll_category'
 
+  post 'api/framework' => 'frame_work#enroll_framework'
+
 end
