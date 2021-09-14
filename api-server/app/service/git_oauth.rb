@@ -25,7 +25,9 @@ class GitOauth
       profile = JSON.parse(RestClient.get(URL::GET_PROFILE, {:Authorization => "token #{token}"}))
       Rails.logger.info "Response? #{profile}"
       User.join(profile['email'],  profile['login'], 'random')
-      return profile
+
+      user = User.find_by_email(profile['email'])
+      return TokenParser.encode_token({:id => user.id, :role => user.role})[:access_token]
     end
 
     def get_access_token(response)

@@ -63,7 +63,7 @@ class UserController < ApplicationController
     Rails.logger.info "Git-Hub Code : #{code}"
     profile = GitOauth.git_login(code)
 
-    render :json => {:profile => profile}
+    render :json => {:token => profile}
   end
 
 end
