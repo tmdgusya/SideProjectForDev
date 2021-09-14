@@ -20,8 +20,10 @@ class GitOauth
     public def git_login(code)
       url = "#{URL::GET_PROFILE_URL}?client_id=#{KEY::CLIENT_ID}&client_secret=#{KEY::SECRET_KEY}&code=#{code}"
       response = RestClient.post(url, nil, nil )
+      Rails.logger.info "Response? #{response}"
       token = get_access_token(response)
       profile = JSON.parse(RestClient.get(URL::GET_PROFILE, {:Authorization => "token #{token}"}))
+      Rails.logger.info "Response? #{profile}"
       User.join(profile['email'],  profile['login'], 'random')
       return profile
     end
