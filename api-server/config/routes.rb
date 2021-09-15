@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'api/join' => 'user#join'
   post 'api/login' => 'user#login'
 
-  get 'git-oauth' => 'user#git_login'
+  get 'api/git-oauth' => 'user#git_login'
 
   post 'api/study' => 'study#enroll_study'
   put 'api/study' => 'study#update_study'
