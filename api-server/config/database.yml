@@ -30,5 +30,5 @@ test: &default
 
 production:
   <<: *default
-  host: 34.64.186.177
+  host: 13.124.176.65
   database: study
