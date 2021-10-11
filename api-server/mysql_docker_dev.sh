@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-docker run -d --rm --name moa-mysql \
+docker run -d --rm --name moa-mysql-dev \
   -e MYSQL_ROOT_PASSWORD=1234 \
   -e MYSQL_ROOT_HOST='%' \
   -e MYSQL_DATABASE=study \
